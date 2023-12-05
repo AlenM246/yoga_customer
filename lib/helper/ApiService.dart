@@ -17,12 +17,12 @@ class ApiService {
     };
 
     try {
+
+      String payload = 'jsonpayload=${Uri.encodeQueryComponent(jsonEncode(requestData))}';
       final response = await http.post(
-        uri,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: {
-          'jsonpayload': Uri.encodeQueryComponent(jsonEncode(requestData)),
-        },
+          uri,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: payload
       );
 
       if (response.statusCode == 200) {
